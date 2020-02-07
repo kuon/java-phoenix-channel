@@ -11,7 +11,10 @@ build:
 
 .PHONY: doc
 doc:
+	rm -fr docs
 	./gradlew dokka
+	mkdir -p docs
+	mv build/docs/java-phoenix-channel/* docs/
 
 .PHONY: test
 test:

@@ -53,6 +53,6 @@ tasks.withType<Test> {
 
 tasks.dokka {
     outputFormat = "html"
-    outputDirectory = "docs/"
+    outputDirectory = "build/docs/"
 }
 
