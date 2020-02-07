@@ -14,7 +14,7 @@ defmodule MockServerWeb.MockChannel do
   end
 
   def handle_in("trigger", payload, socket) do
-    broadcast socket, "broadcast", payload
+    broadcast(socket, "broadcast", payload)
     {:noreply, socket}
   end
 

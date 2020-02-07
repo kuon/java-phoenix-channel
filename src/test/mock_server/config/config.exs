@@ -10,7 +10,8 @@ use Mix.Config
 # Configures the endpoint
 config :mock_server, MockServerWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "iCmRSF4xTTt+gJkmbgUFV0c2LPf1/F48AQI7TSkmR+eVy8GOY8tQJk3ErHB7JDYt",
+  secret_key_base:
+    "iCmRSF4xTTt+gJkmbgUFV0c2LPf1/F48AQI7TSkmR+eVy8GOY8tQJk3ErHB7JDYt",
   render_errors: [view: MockServerWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: MockServer.PubSub, adapter: Phoenix.PubSub.PG2]
 
