@@ -9,5 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: 1.9.4
+        otp-version: 22.2
     - name: Run tests
       run: make test

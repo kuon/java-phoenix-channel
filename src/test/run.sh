@@ -5,6 +5,9 @@ testdir=$(dirname "$0")
 root=$(pwd)
 
 cd ${testdir}/mock_server
+
+mix deps.get || { echo 'Failed to install mix dependencies' ; exit 1; }
+
 mix phx.server &
 PID=$!
 
