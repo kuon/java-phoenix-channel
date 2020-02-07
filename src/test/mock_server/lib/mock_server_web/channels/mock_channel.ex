@@ -21,4 +21,23 @@ defmodule MockServerWeb.MockChannel do
   # Add authorization logic here as required.
   defp authorized?(%{"auth" => "secret"}), do: true
   defp authorized?(_), do: false
+
+  alias MockServerWeb.MockPresence, as: Presence
+  alias MockServer.Counter
+
+  def join("mock:presence", _payload, socket) do
+    send(self(), :after_join)
+    {:ok, assign(socket, :user_id, Counter.increment())}
+  end
+
+  def handle_info(:after_join, socket) do
+    push(socket, "presence_state", Presence.list(socket))
+
+    {:ok, _} =
+      Presence.track(socket, socket.assigns.user_id, %{
+        online_at: inspect(System.system_time(:second))
+      })
+
+    {:noreply, socket}
+  end
 end

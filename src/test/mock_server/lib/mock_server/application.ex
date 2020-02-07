@@ -10,7 +10,8 @@ defmodule MockServer.Application do
     children = [
       # Start the endpoint when the application starts
       MockServerWeb.Endpoint,
-      MockServerWeb.MockPresence
+      MockServerWeb.MockPresence,
+      MockServer.Counter,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1126,11 +1126,12 @@ class Socket(
 
 // TODO implement presence
 
-class Presence(val channel: Channel, val opts: Options) {
+class Presence(val channel: Channel, val opts: Options = Options()) {
 
-    class Options {
+    class Options(
+        var eventNames: EventNames = EventNames("presence_state", "presence_diff")
+    ) {
         class EventNames(val state: String, val diff: String)
-        var eventNames = EventNames("presence_state", "presence_diff")
     }
 
     class Entry(val str: String): JSONObject(str) {
@@ -1185,24 +1186,27 @@ class Presence(val channel: Channel, val opts: Options) {
 
     init {
         channel.on(opts.eventNames.state) { msg ->
-            val newState = toState(msg.response)
-            joinRef = channel.joinRef()
-            state = Presence.syncState(state, newState, onJoin, onLeave)
-            pendingDiffs.forEach { diff ->
-                state = Presence.syncDiff(state, diff, onJoin, onLeave)
-            }
-            pendingDiffs = listOf()
-            onSync()
-        }
-        channel.on(opts.eventNames.diff) { msg ->
-            val diff = toDiff(msg.response)
-            if (inPendingSyncState()) {
-                pendingDiffs = pendingDiffs.plus(diff)
-            } else {
-                state = Presence.syncDiff(state, diff, onJoin, onLeave)
+            synchronized(channel.socket) {
+                val newState = toState(msg.response)
+                joinRef = channel.joinRef()
+                state = Presence.syncState(state, newState, onJoin, onLeave)
+                pendingDiffs.forEach { diff ->
+                    state = Presence.syncDiff(state, diff, onJoin, onLeave)
+                }
+                pendingDiffs = listOf()
                 onSync()
             }
-
+        }
+        channel.on(opts.eventNames.diff) { msg ->
+            synchronized(channel.socket) {
+                val diff = toDiff(msg.response)
+                if (inPendingSyncState()) {
+                    pendingDiffs = pendingDiffs.plus(diff)
+                } else {
+                    state = Presence.syncDiff(state, diff, onJoin, onLeave)
+                    onSync()
+                }
+            }
         }
     }
 
@@ -1242,7 +1246,9 @@ class Presence(val channel: Channel, val opts: Options) {
     }
 
     fun list(by: (String, Entry) -> Entry = { _, p -> p }) : List<Entry> {
-        return Presence.list(state, by)
+        synchronized(channel.socket) {
+            return Presence.list(state, by)
+        }
     }
 
 
@@ -1266,22 +1272,22 @@ class Presence(val channel: Channel, val opts: Options) {
             return Diff(joins, leaves)
         }
 
-        private fun mapRefs(a: JSONArray): Set<Int> {
+        private fun mapRefs(a: JSONArray): Set<String> {
             return a.map { m ->
                 if (m is JSONObject) {
-                    m.getInt("phx_ref")
+                    m.getString("phx_ref")
                 } else {
                     throw Exception("Meta element is not JSON object")
                 }
             }.toSet()
         }
 
-        private fun filterMetas(a: JSONArray, refs: Set<Int>): List<JSONObject> {
+        private fun filterMetas(a: JSONArray, refs: Set<String>): List<JSONObject> {
             val results = mutableListOf<JSONObject>()
 
             a.forEach { m ->
                 if (m is JSONObject) {
-                    val ref = m.getInt("phx_ref")
+                    val ref = m.getString("phx_ref")
                     if (!refs.contains(ref)) {
                         results.add(m)
                     }

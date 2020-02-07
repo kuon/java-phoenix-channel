@@ -10,6 +10,7 @@ import net.jodah.concurrentunit.Waiter
 val url = "ws://localhost:4444/socket"
 
 class ChannelTest {
+
     @Test fun testURL() {
         val sd = Socket(url)
 
@@ -19,7 +20,6 @@ class ChannelTest {
             "URL do not match"
         )
     }
-
 
     @Test fun testConnect() {
         val waiter = Waiter()
@@ -44,7 +44,6 @@ class ChannelTest {
         waiter.await(10000)
     }
 
-
     @Test fun testJoinError() {
         val waiter = Waiter()
 
@@ -66,7 +65,6 @@ class ChannelTest {
         waiter.await(10000)
         sd.disconnect()
     }
-
 
     @Test fun testEcho() {
         val waiter = Waiter()
@@ -151,7 +149,69 @@ class ChannelTest {
         chan3.push("trigger", JSONObject(hashMapOf("br" to "br-data")))
 
         waiter.await(10000, 3)
+        sd1.disconnect()
+        sd2.disconnect()
+        sd3.disconnect()
+    }
 
+    @Test fun testPresence() {
+        val waiterOnJoin1 = Waiter()
+        val waiterOnJoin2 = Waiter()
+        val waiterOnLeave1 = Waiter()
+        val waiterOnLeave2 = Waiter()
+        val waiterOnSync1 = Waiter()
+        val waiterOnSync2 = Waiter()
+        val sd1 = Socket(url)
+        val sd2 = Socket(url)
+
+        sd1.connect()
+        sd2.connect()
+
+        val ch1 = sd1.channel("mock:presence")
+        val ch2 = sd2.channel("mock:presence")
+
+
+        val pr1 = Presence(ch1)
+        val pr2 = Presence(ch2)
+
+        pr1.onJoin { key, _cur, _new ->
+            waiterOnJoin1.resume()
+        }
+        pr1.onLeave { key, _, _ ->
+            waiterOnLeave1.resume()
+        }
+        pr1.onSync {
+            waiterOnSync1.resume()
+        }
+        pr2.onJoin { key, _cur, _new ->
+            waiterOnJoin2.resume()
+        }
+        pr2.onLeave { key, _, _ ->
+            waiterOnLeave2.resume()
+        }
+        pr2.onSync {
+            waiterOnSync2.resume()
+        }
+
+        waiterOnJoin1.assertEquals(listOf<String>(), pr1.list())
+        waiterOnJoin1.assertEquals(listOf<String>(), pr2.list())
+
+        ch1.join()
+        waiterOnJoin1.await(10000, 1)
+        waiterOnSync1.await(10000, 2)
+
+        ch2.join()
+        waiterOnJoin2.await(10000, 1)
+        waiterOnSync2.await(10000, 2)
+
+        waiterOnJoin1.await(10000, 1)
+        waiterOnSync1.await(10000, 1)
+
+        ch2.leave()
+        waiterOnLeave1.await(10000, 1)
+
+        sd2.disconnect()
+        sd1.disconnect()
     }
 
 }

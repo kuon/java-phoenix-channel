@@ -4,7 +4,7 @@ defmodule MockServerWeb.UserSocket do
   ## Channels
   # channel "room:*", MockServerWeb.RoomChannel
   #
-  channel "mock:lobby", MockServerWeb.MockChannel
+  channel "mock:*", MockServerWeb.MockChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

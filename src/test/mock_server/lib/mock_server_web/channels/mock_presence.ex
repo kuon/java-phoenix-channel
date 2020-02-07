@@ -71,4 +71,11 @@ defmodule MockServerWeb.MockPresence do
   use Phoenix.Presence,
     otp_app: :mock_server,
     pubsub_server: MockServer.PubSub
+
+
+  def fetch(topic, entries) do
+    for {key, %{metas: metas}} <- entries, into: %{} do
+      {key, %{metas: metas, user: key}}
+    end
+  end
 end
