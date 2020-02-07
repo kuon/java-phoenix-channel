@@ -127,9 +127,25 @@ class ChannelTest {
         val chan2 = sd2.channel("mock:lobby", auth)
         val chan3 = sd3.channel("mock:lobby", auth)
 
-        chan1.join()
-        chan2.join()
-        chan3.join()
+        chan1
+        .join()
+        .receive("ok") { _msg ->
+            waiter.resume()
+        }
+
+        chan2
+        .join()
+        .receive("ok") { _msg ->
+            waiter.resume()
+        }
+
+        chan3
+        .join()
+        .receive("ok") { _msg ->
+            waiter.resume()
+        }
+
+        waiter.await(10000, 3)
 
         chan1.on("broadcast") { msg ->
             waiter.assertEquals("br-data", msg.response.getString("br"))
