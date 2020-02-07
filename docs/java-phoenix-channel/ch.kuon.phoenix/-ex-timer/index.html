@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ExTimer - java-phoenix-channel</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="./index.html">ExTimer</a><br/>
+<br/>
+<h1>ExTimer</h1>
+<code><span class="keyword">class </span><span class="identifier">ExTimer</span></code>
+<p>Exponential backoff timer</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Exponential backoff timer</p>
+<code><span class="identifier">ExTimer</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.ExTimer$<init>(kotlin.Function0((kotlin.Unit)), kotlin.Function1((kotlin.Int, )))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">Callback</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.ExTimer$<init>(kotlin.Function0((kotlin.Unit)), kotlin.Function1((kotlin.Int, )))/timerCalc">timerCalc</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="callback.html">callback</a></h4>
+</td>
+<td>
+<p>The function called when the timer fires</p>
+<code><span class="keyword">var </span><span class="identifier">callback</span><span class="symbol">: </span><span class="identifier">Callback</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="timer.html">timer</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">timer</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Timer.html"><span class="identifier">Timer</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="timer-calc.html">timerCalc</a></h4>
+</td>
+<td>
+<p>A function that is called when the timer is scheduled.
+    It is called with the current try and must return a
+    time in miliseconds. It is used to implement exponential
+    timers. First value of <code>tries</code> is 1.
+    Example: <code>{ tries -&gt; min(tries * tries * 1000, 60000) }</code></p>
+<code><span class="keyword">var </span><span class="identifier">timerCalc</span><span class="symbol">: </span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="tries.html">tries</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">tries</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicInteger.html"><span class="identifier">AtomicInteger</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="reset.html">reset</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">reset</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="schedule-timeout.html">scheduleTimeout</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">scheduleTimeout</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

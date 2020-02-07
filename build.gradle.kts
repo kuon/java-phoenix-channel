@@ -8,6 +8,8 @@ plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.3.61"
 
+    id("org.jetbrains.dokka") version "0.10.0"
+
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
 }
@@ -43,9 +45,14 @@ dependencies {
     testImplementation("net.jodah:concurrentunit:0.4.6")
 }
 
-
 tasks.withType<Test> {
     testLogging {
         showStandardStreams = true
     }
 }
+
+tasks.dokka {
+    outputFormat = "html"
+    outputDirectory = "docs/"
+}
+

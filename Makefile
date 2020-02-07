@@ -9,6 +9,10 @@ help:
 build:
 	./gradlew assemble
 
+.PHONY: doc
+doc:
+	./gradlew dokka
+
 .PHONY: test
 test:
 	./src/test/run.sh

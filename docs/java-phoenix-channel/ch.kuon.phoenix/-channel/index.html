@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Channel - java-phoenix-channel</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="./index.html">Channel</a><br/>
+<br/>
+<h1>Channel</h1>
+<code><span class="keyword">class </span><span class="identifier">Channel</span></code>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-event/index.html">Event</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Event</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-message/index.html">Message</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Message</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-push/index.html">Push</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Push</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-state/index.html">State</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">State</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">Channel</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$<init>(kotlin.String, org.json.JSONObject, ch.kuon.phoenix.Socket)/topic">topic</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$<init>(kotlin.String, org.json.JSONObject, ch.kuon.phoenix.Socket)/params">params</span><span class="symbol">:</span>&nbsp;<span class="identifier">JSONObject</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$<init>(kotlin.String, org.json.JSONObject, ch.kuon.phoenix.Socket)/socket">socket</span><span class="symbol">:</span>&nbsp;<a href="../-socket/index.html"><span class="identifier">Socket</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="params.html">params</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">params</span><span class="symbol">: </span><span class="identifier">JSONObject</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="socket.html">socket</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">socket</span><span class="symbol">: </span><a href="../-socket/index.html"><span class="identifier">Socket</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="topic.html">topic</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">topic</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="join.html">join</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">join</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$join(kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.timeout<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Push</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="leave.html">leave</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">leave</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$leave(kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.timeout<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Push</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="off.html">off</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">off</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$off(kotlin.String, kotlin.Int)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$off(kotlin.String, kotlin.Int)/ref">ref</span><span class="symbol">:</span>&nbsp;<span class="identifier">Ref</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on.html">on</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">on</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$on(kotlin.String, kotlin.Function1((ch.kuon.phoenix.Channel.Message, kotlin.Unit)))/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$on(kotlin.String, kotlin.Function1((ch.kuon.phoenix.Channel.Message, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">Message</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-close.html">onClose</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onClose</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$onClose(kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-error.html">onError</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onError</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$onError(kotlin.Function1((kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="push.html">push</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">push</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$push(kotlin.String, org.json.JSONObject, kotlin.Int)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$push(kotlin.String, org.json.JSONObject, kotlin.Int)/payload">payload</span><span class="symbol">:</span>&nbsp;<span class="identifier">JSONObject</span>&nbsp;<span class="symbol">=</span>&nbsp;JSONObject()<span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$push(kotlin.String, org.json.JSONObject, kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.timeout<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Push</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="to-string.html">toString</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-life-cycle-events.html">LifeCycleEvents</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">LifeCycleEvents</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
