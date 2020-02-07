@@ -10,6 +10,16 @@ PID=$!
 
 sleep 2
 
+ps -p $PID
+
+if [ $? -ne 0 ]
+then
+  echo $PID
+  echo "Cannot start mock server"
+  exit 1
+fi
+
+
 cd ${root}
 
 ./gradlew test
