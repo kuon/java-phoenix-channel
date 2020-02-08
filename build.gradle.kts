@@ -1,9 +1,3 @@
-/*
-import com.github.jengelman.gradle.plugins.shadow.ShadowApplicationPlugin
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
-import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocation
-*/
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.BintrayPlugin
@@ -22,9 +16,6 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
-
-    // Bundle all dependencies
-    //id("com.github.johnrengelman.shadow") version "5.2.0"
 
     // Create maven artefacts
     `maven-publish`
@@ -69,11 +60,6 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            /*
-            configure<ShadowExtension> {
-                component(this@create)
-            }
-            */
             from(components["java"])
             groupId = projectGroup
             artifactId = projectName
@@ -113,11 +99,6 @@ tasks {
         outputFormat = "html"
         outputDirectory = "build/docs/"
     }
-    /*
-    withType(GradleBuild::class.java) {
-        dependsOn(shadowJar)
-    }
-    */
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
     }
@@ -127,21 +108,4 @@ tasks {
     withType<GenerateMavenPom> {
         destination = file("$buildDir/libs/${projectName}.pom")
     }
-    /*
-    withType<ShadowJar> {
-        baseName = projectName
-        classifier = ""
-        version = projectVersion
-    }
-    */
 }
-
-/*
-tasks.create<ConfigureShadowRelocation>("relocateShadowJar") {
-    target = tasks["shadowJar"] as ShadowJar
-    prefix = "ch.kuon.phoenix.dependencies"
-}
-tasks["shadowJar"].dependsOn(tasks["relocateShadowJar"])
-*/
-
-
