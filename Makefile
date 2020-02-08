@@ -25,3 +25,8 @@ test:
 .PHONY: clean
 clean:
 	rm -fr build .gradle
+
+
+.PHONY: publish
+publish:
+	gradle bintrayUpload
