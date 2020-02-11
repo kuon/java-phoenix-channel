@@ -7,7 +7,7 @@ help:
 
 .PHONY: build
 build:
-	./gradlew assemble
+	./gradlew build -x test
 
 .PHONY: doc
 doc:
