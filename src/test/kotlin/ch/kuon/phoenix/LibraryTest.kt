@@ -36,7 +36,7 @@ class ChannelTest {
 
         waiter.await(10000)
 
-        sd.onClose { code, reason ->
+        sd.onClose { code, _ ->
             waiter.assertEquals(code, 1000)
             waiter.resume()
         }
@@ -56,7 +56,7 @@ class ChannelTest {
 
         chan
         .join()
-        .receive("ok") { msg ->
+        .receive("ok") { _ ->
             waiter.fail("Channel should fail join without auth")
         }
         .receive("error") { _ ->
@@ -129,19 +129,19 @@ class ChannelTest {
 
         chan1
         .join()
-        .receive("ok") { _msg ->
+        .receive("ok") { _ ->
             waiter.resume()
         }
 
         chan2
         .join()
-        .receive("ok") { _msg ->
+        .receive("ok") { _ ->
             waiter.resume()
         }
 
         chan3
         .join()
-        .receive("ok") { _msg ->
+        .receive("ok") { _ ->
             waiter.resume()
         }
 
@@ -190,19 +190,19 @@ class ChannelTest {
         val pr1 = Presence(ch1)
         val pr2 = Presence(ch2)
 
-        pr1.onJoin { key, _cur, _new ->
+        pr1.onJoin { _, _, _ ->
             waiterOnJoin1.resume()
         }
-        pr1.onLeave { key, _, _ ->
+        pr1.onLeave { _, _, _ ->
             waiterOnLeave1.resume()
         }
         pr1.onSync {
             waiterOnSync1.resume()
         }
-        pr2.onJoin { key, _cur, _new ->
+        pr2.onJoin { _, _, _ ->
             waiterOnJoin2.resume()
         }
-        pr2.onLeave { key, _, _ ->
+        pr2.onLeave { _, _, _ ->
             waiterOnLeave2.resume()
         }
         pr2.onSync {
