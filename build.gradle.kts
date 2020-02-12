@@ -4,7 +4,8 @@ import com.jfrog.bintray.gradle.BintrayPlugin
 import org.jetbrains.dokka.gradle.DokkaTask
 
 val projectGroup = "ch.kuon.phoenix"
-val projectVersion = "0.1.0"
+// update elixir project (mock_servver:mix.exs) version too to keep them in sync
+val projectVersion = "0.1.1"
 val projectName = "channel"
 
 plugins {
