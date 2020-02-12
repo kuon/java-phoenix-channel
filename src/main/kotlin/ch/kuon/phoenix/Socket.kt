@@ -649,7 +649,7 @@ class Socket(
             websocket: WebSocket,
             headers: Map<String,List<String>>
         ) {
-            sock.log("RAW SOCKET", "Connected to", sock.endPointURL())
+            sock.log("RAW_SOCKET", "Connected to", sock.endPointURL())
             sock.triggerConnect()
         }
 
@@ -659,7 +659,7 @@ class Socket(
             clientCloseFrame: WebSocketFrame,
             closedByServer: Boolean
         ) {
-            sock.log("RAW SOCKET", "Disconnected")
+            sock.log("RAW_SOCKET", "Disconnected")
             var code: Int
             var reason: String
 
@@ -677,7 +677,7 @@ class Socket(
         }
 
         override fun onError(websocket: WebSocket, cause: WebSocketException) {
-            sock.log("RAW SOCKET", "Error", cause)
+            sock.log("RAW_SOCKET", "Error", cause)
 
             sock.triggerError(cause.toString())
 
@@ -702,13 +702,13 @@ class Socket(
             websocket: WebSocket,
             cause: WebSocketException
         ) {
-            sock.log("RAW SOCKET", "Unexpected error", cause)
+            sock.log("RAW_SOCKET", "Unexpected error", cause)
 
             sock.triggerError(cause.toString())
         }
 
         override fun onTextMessage(websocket: WebSocket, rawMessage: String) {
-            sock.log("RAW SOCKET", "Message", rawMessage)
+            sock.log("RAW_SOCKET", "Message", rawMessage)
 
             sock.triggerTextMessage(rawMessage)
         }
