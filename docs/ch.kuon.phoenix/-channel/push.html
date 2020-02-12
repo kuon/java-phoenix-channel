@@ -1,14 +1,24 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Channel.push - java-phoenix-channel</title>
+<title>Channel.push - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Channel</a>&nbsp;/&nbsp;<a href="./push.html">push</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Channel</a>&nbsp;/&nbsp;<a href="./push.html">push</a><br/>
 <br/>
 <h1>push</h1>
 <a name="ch.kuon.phoenix.Channel$push(kotlin.String, org.json.JSONObject, kotlin.Int)"></a>
 <code><span class="keyword">fun </span><span class="identifier">push</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$push(kotlin.String, org.json.JSONObject, kotlin.Int)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$push(kotlin.String, org.json.JSONObject, kotlin.Int)/payload">payload</span><span class="symbol">:</span>&nbsp;<span class="identifier">JSONObject</span>&nbsp;<span class="symbol">=</span>&nbsp;JSONObject()<span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$push(kotlin.String, org.json.JSONObject, kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.timeout<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Push</span></code>
+<p>Push a message to the channel.</p>
+<h3>Parameters</h3>
+<p><a name="event"></a>
+<code>event</code> - Event name</p>
+<p><a name="payload"></a>
+<code>payload</code> - Arbitrary payload</p>
+<p><a name="timeout"></a>
+<code>timeout</code> - Timeout, default to socket timeout</p>
+<p><strong>Return</strong><br/>
+A push that can be used for chaining</p>
 </BODY>
 </HTML>

@@ -1,29 +1,24 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Presence - java-phoenix-channel</title>
+<title>Presence - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="./index.html">Presence</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="./index.html">Presence</a><br/>
 <br/>
 <h1>Presence</h1>
 <code><span class="keyword">class </span><span class="identifier">Presence</span></code>
+<p>Listen for presence changes</p>
 <h3>Types</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<h4><a href="-diff/index.html">Diff</a></h4>
-</td>
-<td>
-<code><span class="keyword">class </span><span class="identifier">Diff</span></code></td>
-</tr>
-<tr>
-<td>
 <h4><a href="-entry/index.html">Entry</a></h4>
 </td>
 <td>
+<p>A presence entry</p>
 <code><span class="keyword">class </span><span class="identifier">Entry</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">JSONObject</span></code></td>
 </tr>
 <tr>
@@ -31,6 +26,7 @@
 <h4><a href="-options/index.html">Options</a></h4>
 </td>
 <td>
+<p>Presence options</p>
 <code><span class="keyword">class </span><span class="identifier">Options</span></code></td>
 </tr>
 </tbody>
@@ -43,6 +39,7 @@
 <h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
+<p>Listen for presence changes</p>
 <code><span class="identifier">Presence</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence$<init>(ch.kuon.phoenix.Channel, ch.kuon.phoenix.Presence.Options)/channel">channel</span><span class="symbol">:</span>&nbsp;<a href="../-channel/index.html"><span class="identifier">Channel</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence$<init>(ch.kuon.phoenix.Channel, ch.kuon.phoenix.Presence.Options)/opts">opts</span><span class="symbol">:</span>&nbsp;<span class="identifier">Options</span>&nbsp;<span class="symbol">=</span>&nbsp;Options()<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
@@ -55,6 +52,7 @@
 <h4><a href="channel.html">channel</a></h4>
 </td>
 <td>
+<p>A channel</p>
 <code><span class="keyword">val </span><span class="identifier">channel</span><span class="symbol">: </span><a href="../-channel/index.html"><span class="identifier">Channel</span></a></code></td>
 </tr>
 <tr>
@@ -62,6 +60,7 @@
 <h4><a href="opts.html">opts</a></h4>
 </td>
 <td>
+<p>Options</p>
 <code><span class="keyword">val </span><span class="identifier">opts</span><span class="symbol">: </span><span class="identifier">Options</span></code></td>
 </tr>
 </tbody>
@@ -74,6 +73,7 @@
 <h4><a href="in-pending-sync-state.html">inPendingSyncState</a></h4>
 </td>
 <td>
+<p>Is there any pendinng sync state</p>
 <code><span class="keyword">fun </span><span class="identifier">inPendingSyncState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
@@ -81,6 +81,7 @@
 <h4><a href="list.html">list</a></h4>
 </td>
 <td>
+<p>Returns the list of presence</p>
 <code><span class="keyword">fun </span><span class="identifier">list</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence$list(kotlin.Function2((kotlin.String, ch.kuon.phoenix.Presence.Entry, )))/by">by</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Entry</span>&nbsp;<span class="symbol">=</span>&nbsp;{ _, p -&gt; p }<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Entry</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
@@ -106,47 +107,6 @@
 <td>
 <p>Set the callback for sync event</p>
 <code><span class="keyword">fun </span><span class="identifier">onSync</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence$onSync(kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Companion Object Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="clone.html">clone</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">clone</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$clone(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)))/obj">obj</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">clone</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$clone(ch.kuon.phoenix.Presence.Entry)/entry">entry</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Entry</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="list.html">list</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">list</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$list(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function2((kotlin.String, ch.kuon.phoenix.Presence.Entry, )))/presences">presences</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$list(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function2((kotlin.String, ch.kuon.phoenix.Presence.Entry, )))/chooser">chooser</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Entry</span>&nbsp;<span class="symbol">=</span>&nbsp;{ _, p -&gt; p }<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Entry</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="map.html">map</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$map(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function2((kotlin.String, ch.kuon.phoenix.Presence.Entry, )))/entries">entries</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$map(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function2((kotlin.String, ch.kuon.phoenix.Presence.Entry, )))/func">func</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Entry</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="sync-diff.html">syncDiff</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">syncDiff</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncDiff(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), ch.kuon.phoenix.Presence.Diff, kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/currentState">currentState</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncDiff(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), ch.kuon.phoenix.Presence.Diff, kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/diff">diff</span><span class="symbol">:</span>&nbsp;<span class="identifier">Diff</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncDiff(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), ch.kuon.phoenix.Presence.Diff, kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/onJoin">onJoin</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">currentPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">newPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncDiff(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), ch.kuon.phoenix.Presence.Diff, kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/onLeave">onLeave</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">currentPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">leftPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="sync-state.html">syncState</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">syncState</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncState(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/currentState">currentState</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncState(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/newState">newState</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncState(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/onJoin">onJoin</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">currentPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">newPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Presence.Companion$syncState(java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), java.util.HashMap((kotlin.String, ch.kuon.phoenix.Presence.Entry)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)), kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/onLeave">onLeave</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">currentPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">leftPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>

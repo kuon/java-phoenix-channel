@@ -1,14 +1,23 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Socket.onClose - java-phoenix-channel</title>
+<title>Socket.onClose - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./on-close.html">onClose</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./on-close.html">onClose</a><br/>
 <br/>
 <h1>onClose</h1>
 <a name="ch.kuon.phoenix.Socket$onClose(kotlin.Function2((kotlin.Int, kotlin.String, kotlin.Unit)))"></a>
 <code><span class="keyword">fun </span><span class="identifier">onClose</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$onClose(kotlin.Function2((kotlin.Int, kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">CloseCallback</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code>
+<p>Register an close callback.
+Multiple callbacks can be registerd.</p>
+<p>Note: The callback might be called on another thread</p>
+<h3>Parameters</h3>
+<p><a name="callback"></a>
+<code>callback</code> - A callback function</p>
+<p><strong>Return</strong><br/>
+A reference to the callback that can be used with the
+<a href="off.html">Socket.off</a> function.</p>
 </BODY>
 </HTML>

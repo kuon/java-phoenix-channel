@@ -1,16 +1,17 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Presence.onLeave - java-phoenix-channel</title>
+<title>Presence.onLeave - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Presence</a>&nbsp;/&nbsp;<a href="./on-leave.html">onLeave</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Presence</a>&nbsp;/&nbsp;<a href="./on-leave.html">onLeave</a><br/>
 <br/>
 <h1>onLeave</h1>
 <a name="ch.kuon.phoenix.Presence$onLeave(kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))"></a>
 <code><span class="keyword">fun </span><span class="identifier">onLeave</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence$onLeave(kotlin.Function3((kotlin.String, ch.kuon.phoenix.Presence.Entry, ch.kuon.phoenix.Presence.Entry, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">currentPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">leftPresence</span><span class="symbol">:</span>&nbsp;<span class="identifier">Entry</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Set the callback for leave event</p>
+<p>Note: the callback might be called on another thread</p>
 <h3>Parameters</h3>
 <p><a name="callback"></a>
 <code>callback</code> - The function to be called on leave</p>

@@ -1,14 +1,21 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Socket - java-phoenix-channel</title>
+<title>Socket - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="./index.html">Socket</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="./index.html">Socket</a><br/>
 <br/>
 <h1>Socket</h1>
 <code><span class="keyword">class </span><span class="identifier">Socket</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">WebSocketAdapter</span></code>
+<p>Socket main constructor.</p>
+<p>This class is a thin layer above websockets. This layer provides
+compatibility with Phoenix Sockets. It handle heartbeat, serialization and
+provides a simple event based API.</p>
+<p>When using Phoenix, you will usually not push messages directly to sockets
+but use <a href="../-channel/index.html">Channels</a> instead.</p>
+<p>The url can use either the <code>ws://</code> or <code>wss://</code> scheme.</p>
 <h3>Types</h3>
 <table>
 <tbody>
@@ -17,6 +24,7 @@
 <h4><a href="-message/index.html">Message</a></h4>
 </td>
 <td>
+<p>A raw socket message.</p>
 <code><span class="keyword">class </span><span class="identifier">Message</span></code></td>
 </tr>
 <tr>
@@ -24,6 +32,7 @@
 <h4><a href="-options/index.html">Options</a></h4>
 </td>
 <td>
+<p>Socket options.</p>
 <code><span class="keyword">class </span><span class="identifier">Options</span></code></td>
 </tr>
 <tr>
@@ -31,6 +40,7 @@
 <h4><a href="-state/index.html">State</a></h4>
 </td>
 <td>
+<p>Enum representing socket state</p>
 <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">State</span></code></td>
 </tr>
 </tbody>
@@ -43,6 +53,7 @@
 <h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
+<p>Socket main constructor.</p>
 <code><span class="identifier">Socket</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$<init>(kotlin.String, ch.kuon.phoenix.Socket.Options)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Socket$<init>(kotlin.String, ch.kuon.phoenix.Socket.Options)/opts">opts</span><span class="symbol">:</span>&nbsp;<span class="identifier">Options</span>&nbsp;<span class="symbol">=</span>&nbsp;Socket.Options()<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
@@ -55,6 +66,8 @@
 <h4><a href="opts.html">opts</a></h4>
 </td>
 <td>
+<p>An <code>Socket.Option</code> object. If ommited default configuration is
+used.</p>
 <code><span class="keyword">var </span><span class="identifier">opts</span><span class="symbol">: </span><span class="identifier">Options</span></code></td>
 </tr>
 <tr>
@@ -62,6 +75,7 @@
 <h4><a href="url.html">url</a></h4>
 </td>
 <td>
+<p>The full web socket URL</p>
 <code><span class="keyword">var </span><span class="identifier">url</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 </tbody>
@@ -74,6 +88,7 @@
 <h4><a href="channel.html">channel</a></h4>
 </td>
 <td>
+<p>Prefered constructor for channels.</p>
 <code><span class="keyword">fun </span><span class="identifier">channel</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$channel(kotlin.String, org.json.JSONObject)/topic">topic</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Socket$channel(kotlin.String, org.json.JSONObject)/params">params</span><span class="symbol">:</span>&nbsp;<span class="identifier">JSONObject</span>&nbsp;<span class="symbol">=</span>&nbsp;JSONObject()<span class="symbol">)</span><span class="symbol">: </span><a href="../-channel/index.html"><span class="identifier">Channel</span></a></code></td>
 </tr>
 <tr>
@@ -81,6 +96,7 @@
 <h4><a href="connect.html">connect</a></h4>
 </td>
 <td>
+<p>Connect the socket to the server</p>
 <code><span class="keyword">fun </span><span class="identifier">connect</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -88,6 +104,7 @@
 <h4><a href="connection-state.html">connectionState</a></h4>
 </td>
 <td>
+<p>Returns the current socket <a href="-state/index.html">state</a></p>
 <code><span class="keyword">fun </span><span class="identifier">connectionState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">State</span></code></td>
 </tr>
 <tr>
@@ -95,6 +112,7 @@
 <h4><a href="disconnect.html">disconnect</a></h4>
 </td>
 <td>
+<p>Disconnect the socket.</p>
 <code><span class="keyword">fun </span><span class="identifier">disconnect</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$disconnect(kotlin.Function0((kotlin.Unit)), kotlin.Int, kotlin.String)/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Socket$disconnect(kotlin.Function0((kotlin.Unit)), kotlin.Int, kotlin.String)/code">code</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Socket$disconnect(kotlin.Function0((kotlin.Unit)), kotlin.Int, kotlin.String)/reason">reason</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -110,6 +128,7 @@
 <h4><a href="is-connected.html">isConnected</a></h4>
 </td>
 <td>
+<p>Returns the connected state (if state is <a href="-state/-o-p-e-n.html">OPEN</a>)</p>
 <code><span class="keyword">fun </span><span class="identifier">isConnected</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
@@ -117,9 +136,7 @@
 <h4><a href="log.html">log</a></h4>
 </td>
 <td>
-<p>Log a message.
-Override <code>logger</code> in socket option to change this.
-Default to <code>stdout</code>.</p>
+<p>Log a message.</p>
 <code><span class="keyword">fun </span><span class="identifier">log</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$log(kotlin.String, kotlin.String, kotlin.Any)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Socket$log(kotlin.String, kotlin.String, kotlin.Any)/msg">msg</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Socket$log(kotlin.String, kotlin.String, kotlin.Any)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
@@ -127,13 +144,18 @@ Default to <code>stdout</code>.</p>
 <h4><a href="off.html">off</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">off</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$off(kotlin.collections.List((kotlin.Int)))/refs">refs</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Unregister on listeners</p>
+<code><span class="keyword">fun </span><span class="identifier">off</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$off(kotlin.collections.List((kotlin.Int)))/refs">refs</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Ref</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Unregister on listener</p>
+<code><span class="keyword">fun </span><span class="identifier">off</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$off(kotlin.Int)/ref">ref</span><span class="symbol">:</span>&nbsp;<span class="identifier">Ref</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="on-close.html">onClose</a></h4>
 </td>
 <td>
+<p>Register an close callback.
+Multiple callbacks can be registerd.</p>
 <code><span class="keyword">fun </span><span class="identifier">onClose</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$onClose(kotlin.Function2((kotlin.Int, kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">CloseCallback</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code></td>
 </tr>
 <tr>
@@ -141,6 +163,8 @@ Default to <code>stdout</code>.</p>
 <h4><a href="on-error.html">onError</a></h4>
 </td>
 <td>
+<p>Register an error callback.
+Multiple callbacks can be registerd.</p>
 <code><span class="keyword">fun </span><span class="identifier">onError</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$onError(kotlin.Function1((kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">ErrorCallback</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code></td>
 </tr>
 <tr>
@@ -148,6 +172,8 @@ Default to <code>stdout</code>.</p>
 <h4><a href="on-message.html">onMessage</a></h4>
 </td>
 <td>
+<p>Register an on message callback.
+Multiple callbacks can be registerd.</p>
 <code><span class="keyword">fun </span><span class="identifier">onMessage</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$onMessage(kotlin.Function1((ch.kuon.phoenix.Socket.Message, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageCallback</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code></td>
 </tr>
 <tr>
@@ -155,6 +181,8 @@ Default to <code>stdout</code>.</p>
 <h4><a href="on-open.html">onOpen</a></h4>
 </td>
 <td>
+<p>Register an open callback.
+Multiple callbacks can be registerd.</p>
 <code><span class="keyword">fun </span><span class="identifier">onOpen</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$onOpen(kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">OpenCallback</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code></td>
 </tr>
 <tr>
@@ -162,6 +190,7 @@ Default to <code>stdout</code>.</p>
 <h4><a href="push.html">push</a></h4>
 </td>
 <td>
+<p>Push a message to the socket</p>
 <code><span class="keyword">fun </span><span class="identifier">push</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$push(ch.kuon.phoenix.Socket.Message)/msg">msg</span><span class="symbol">:</span>&nbsp;<span class="identifier">Message</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>

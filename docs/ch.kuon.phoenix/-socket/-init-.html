@@ -1,14 +1,21 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Socket.<init> - java-phoenix-channel</title>
+<title>Socket.<init> - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
 <br/>
 <h1>&lt;init&gt;</h1>
 <a name="ch.kuon.phoenix.Socket$&lt;init&gt;(kotlin.String, ch.kuon.phoenix.Socket.Options)"></a>
 <code><span class="identifier">Socket</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$<init>(kotlin.String, ch.kuon.phoenix.Socket.Options)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Socket$<init>(kotlin.String, ch.kuon.phoenix.Socket.Options)/opts">opts</span><span class="symbol">:</span>&nbsp;<span class="identifier">Options</span>&nbsp;<span class="symbol">=</span>&nbsp;Socket.Options()<span class="symbol">)</span></code>
+<p>Socket main constructor.</p>
+<p>This class is a thin layer above websockets. This layer provides
+compatibility with Phoenix Sockets. It handle heartbeat, serialization and
+provides a simple event based API.</p>
+<p>When using Phoenix, you will usually not push messages directly to sockets
+but use <a href="../-channel/index.html">Channels</a> instead.</p>
+<p>The url can use either the <code>ws://</code> or <code>wss://</code> scheme.</p>
 </BODY>
 </HTML>

@@ -1,14 +1,22 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Channel.off - java-phoenix-channel</title>
+<title>Channel.off - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Channel</a>&nbsp;/&nbsp;<a href="./off.html">off</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Channel</a>&nbsp;/&nbsp;<a href="./off.html">off</a><br/>
 <br/>
 <h1>off</h1>
 <a name="ch.kuon.phoenix.Channel$off(kotlin.String, kotlin.Int)"></a>
 <code><span class="keyword">fun </span><span class="identifier">off</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Channel$off(kotlin.String, kotlin.Int)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="ch.kuon.phoenix.Channel$off(kotlin.String, kotlin.Int)/ref">ref</span><span class="symbol">:</span>&nbsp;<span class="identifier">Ref</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Unregister a callback</p>
+<h3>Parameters</h3>
+<p><a name="event"></a>
+<code>event</code> - The event name to unregister the callback for.
+This must match what was passed to <a href="on.html">Channel.on</a>.</p>
+<p><a name="ref"></a>
+<code>ref</code> - The ref returned by <a href="on.html">Channel.on</a>, can be ommited
+to unregister all callbacks for a particular event.</p>
 </BODY>
 </HTML>

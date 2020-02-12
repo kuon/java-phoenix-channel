@@ -1,16 +1,17 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Presence.onSync - java-phoenix-channel</title>
+<title>Presence.onSync - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Presence</a>&nbsp;/&nbsp;<a href="./on-sync.html">onSync</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Presence</a>&nbsp;/&nbsp;<a href="./on-sync.html">onSync</a><br/>
 <br/>
 <h1>onSync</h1>
 <a name="ch.kuon.phoenix.Presence$onSync(kotlin.Function0((kotlin.Unit)))"></a>
 <code><span class="keyword">fun </span><span class="identifier">onSync</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Presence$onSync(kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Set the callback for sync event</p>
+<p>Note: the callback might be called on another thread</p>
 <h3>Parameters</h3>
 <p><a name="callback"></a>
 <code>callback</code> - The function to be called on sync</p>

@@ -1,14 +1,17 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Channel.Message.getError - java-phoenix-channel</title>
+<title>Channel.Message.getError - phoenix-channel</title>
 <link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="../index.html">Channel</a>&nbsp;/&nbsp;<a href="index.html">Message</a>&nbsp;/&nbsp;<a href="./get-error.html">getError</a><br/>
+<a href="../../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="../index.html">Channel</a>&nbsp;/&nbsp;<a href="index.html">Message</a>&nbsp;/&nbsp;<a href="./get-error.html">getError</a><br/>
 <br/>
 <h1>getError</h1>
 <a name="ch.kuon.phoenix.Channel.Message$getError()"></a>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getError</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the error reason.</p>
+<p>If this message is not an error, this will throw an exception
+so be sure to check <a href="is-error.html">Message.isError</a> first.</p>
 </BODY>
 </HTML>

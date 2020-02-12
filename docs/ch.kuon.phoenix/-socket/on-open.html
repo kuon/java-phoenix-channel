@@ -1,14 +1,23 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Socket.onOpen - java-phoenix-channel</title>
+<title>Socket.onOpen - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./on-open.html">onOpen</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./on-open.html">onOpen</a><br/>
 <br/>
 <h1>onOpen</h1>
 <a name="ch.kuon.phoenix.Socket$onOpen(kotlin.Function0((kotlin.Unit)))"></a>
 <code><span class="keyword">fun </span><span class="identifier">onOpen</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$onOpen(kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">OpenCallback</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code>
+<p>Register an open callback.
+Multiple callbacks can be registerd.</p>
+<p>Note: The callback might be called on another thread</p>
+<h3>Parameters</h3>
+<p><a name="callback"></a>
+<code>callback</code> - A callback function</p>
+<p><strong>Return</strong><br/>
+A reference to the callback that can be used with the
+<a href="off.html">Socket.off</a> function.</p>
 </BODY>
 </HTML>

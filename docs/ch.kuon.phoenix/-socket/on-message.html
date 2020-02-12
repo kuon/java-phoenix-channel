@@ -1,14 +1,23 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Socket.onMessage - java-phoenix-channel</title>
+<title>Socket.onMessage - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./on-message.html">onMessage</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">Socket</a>&nbsp;/&nbsp;<a href="./on-message.html">onMessage</a><br/>
 <br/>
 <h1>onMessage</h1>
 <a name="ch.kuon.phoenix.Socket$onMessage(kotlin.Function1((ch.kuon.phoenix.Socket.Message, kotlin.Unit)))"></a>
 <code><span class="keyword">fun </span><span class="identifier">onMessage</span><span class="symbol">(</span><span class="identifier" id="ch.kuon.phoenix.Socket$onMessage(kotlin.Function1((ch.kuon.phoenix.Socket.Message, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageCallback</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Ref</span></code>
+<p>Register an on message callback.
+Multiple callbacks can be registerd.</p>
+<p>Note: The callback might be called on another thread</p>
+<h3>Parameters</h3>
+<p><a name="callback"></a>
+<code>callback</code> - A callback function</p>
+<p><strong>Return</strong><br/>
+A reference to the callback that can be used with the
+<a href="off.html">Socket.off</a> function.</p>
 </BODY>
 </HTML>

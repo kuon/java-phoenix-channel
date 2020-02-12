@@ -1,14 +1,19 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>Socket.Options - java-phoenix-channel</title>
+<title>Socket.Options - phoenix-channel</title>
 <link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="../index.html">Socket</a>&nbsp;/&nbsp;<a href="./index.html">Options</a><br/>
+<a href="../../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="../index.html">Socket</a>&nbsp;/&nbsp;<a href="./index.html">Options</a><br/>
 <br/>
 <h1>Options</h1>
 <code><span class="keyword">class </span><span class="identifier">Options</span></code>
+<p>Socket options.</p>
+<p>Build the object with default constructor <code>Options()</code> and
+customize it afterward.</p>
+<p>For interval function, look at <a href="../../-ex-timer/timer-calc.html">ExTimer.timerCalc</a>.</p>
+<p>Note: The logger callback might be called on other thread.</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,6 +22,7 @@
 <h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
+<p>Socket options.</p>
 <code><span class="identifier">Options</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
 </tr>
 </tbody>
@@ -29,6 +35,7 @@
 <h4><a href="heartbeat-interval-ms.html">heartbeatIntervalMs</a></h4>
 </td>
 <td>
+<p>Heartbeat interval in miliseconds</p>
 <code><span class="keyword">var </span><span class="identifier">heartbeatIntervalMs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
 </tr>
 <tr>
@@ -36,6 +43,7 @@
 <h4><a href="logger.html">logger</a></h4>
 </td>
 <td>
+<p>Logger function (must be thread safe)</p>
 <code><span class="keyword">var </span><span class="identifier">logger</span><span class="symbol">: </span><span class="symbol">(</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -43,6 +51,7 @@
 <h4><a href="params.html">params</a></h4>
 </td>
 <td>
+<p>A list of key/value sent with the conection.</p>
 <code><span class="keyword">var </span><span class="identifier">params</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
@@ -50,6 +59,7 @@
 <h4><a href="reconnect-after-ms.html">reconnectAfterMs</a></h4>
 </td>
 <td>
+<p>Reconnect interval functions (must be thread safe)</p>
 <code><span class="keyword">var </span><span class="identifier">reconnectAfterMs</span><span class="symbol">: </span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
 <tr>
@@ -57,6 +67,7 @@
 <h4><a href="rejoin-after-ms.html">rejoinAfterMs</a></h4>
 </td>
 <td>
+<p>Rejoin interval functions (must be thread safe)</p>
 <code><span class="keyword">var </span><span class="identifier">rejoinAfterMs</span><span class="symbol">: </span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
 <tr>
@@ -64,6 +75,7 @@
 <h4><a href="timeout.html">timeout</a></h4>
 </td>
 <td>
+<p>Timeout in miliseconds</p>
 <code><span class="keyword">var </span><span class="identifier">timeout</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
 </tbody>

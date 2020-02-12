@@ -1,26 +1,34 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-<title>ExTimer.timerCalc - java-phoenix-channel</title>
+<title>ExTimer.timerCalc - phoenix-channel</title>
 <link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">java-phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">ExTimer</a>&nbsp;/&nbsp;<a href="./timer-calc.html">timerCalc</a><br/>
+<a href="../../index.html">phoenix-channel</a>&nbsp;/&nbsp;<a href="../index.html">ch.kuon.phoenix</a>&nbsp;/&nbsp;<a href="index.html">ExTimer</a>&nbsp;/&nbsp;<a href="./timer-calc.html">timerCalc</a><br/>
 <br/>
 <h1>timerCalc</h1>
 <a name="ch.kuon.phoenix.ExTimer$timerCalc"></a>
 <code><span class="keyword">var </span><span class="identifier">timerCalc</span><span class="symbol">: </span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
-<p>A function that is called when the timer is scheduled.
-    It is called with the current try and must return a
-    time in miliseconds. It is used to implement exponential
-    timers. First value of <code>tries</code> is 1.
-    Example: <code>{ tries -&gt; min(tries * tries * 1000, 60000) }</code></p>
+<p>A function that is called when the timer is scheduled.</p>
+<p>It is called with the current try and must return a
+time in miliseconds.</p>
+<p>It is used to implement exponential timers.</p>
+<p>First value of <code>tries</code> is 1.</p>
 <h3>Property</h3>
 <p><a name="timerCalc"></a>
-<code>timerCalc</code> - A function that is called when the timer is scheduled.
-    It is called with the current try and must return a
-    time in miliseconds. It is used to implement exponential
-    timers. First value of <code>tries</code> is 1.
-    Example: <code>{ tries -&gt; min(tries * tries * 1000, 60000) }</code></p>
+<code>timerCalc</code> - 
+<p>A function that is called when the timer is scheduled.</p>
+
+
+<p>It is called with the current try and must return a
+time in miliseconds.</p>
+
+
+<p>It is used to implement exponential timers.</p>
+
+
+<p>First value of <code>tries</code> is 1.</p>
+</p>
 </BODY>
 </HTML>
