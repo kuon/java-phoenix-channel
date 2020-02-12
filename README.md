@@ -51,7 +51,7 @@ dependencies {
     implementation("org.json:json:20190722")
 
     // Phoenix Channel Client
-    implementation("ch.kuon.phoenix:channel:0.1.0")
+    implementation("ch.kuon.phoenix:channel:0.1.1")
     // ...
 }
 ```
