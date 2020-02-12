@@ -5,12 +5,21 @@ import java.util.Timer
 import org.json.JSONObject
 import org.json.JSONArray
 
+/**
+ * Phoenix channel client
+ *
+ * Channels are created using the [Socket.channel] method.
+ *
+ */
 class Channel internal constructor(
     var topic: String,
     var params: JSONObject,
     var socket: Socket
 ) {
 
+    /**
+     * Channel state
+     */
     enum class State(var state: String) {
         CLOSED("closed"),
         ERRORED("errored"),
@@ -19,6 +28,9 @@ class Channel internal constructor(
         LEAVING("leaving"),
     }
 
+    /**
+     * Channel built in events
+     */
     enum class Event(var event: String) {
         CLOSE("phx_close"),
         ERROR("phx_error"),
@@ -27,19 +39,44 @@ class Channel internal constructor(
         LEAVE("phx_leave")
     }
 
+    /**
+     * Channel messages
+     *
+     * Usually this class should not be created directly. It is
+     * used as a wrapper around response in [Channel.on] callback.
+     */
     abstract class Message {
+        /**
+         * Status of the response as sent by the server.
+         */
         abstract val status: String
+
+        /**
+         * Response data from the server
+         *
+         * It can be an empty object if the response was empty, but never
+         * `null`.
+         */
         abstract val response: JSONObject
 
+        /**
+         * Returns the error state of the message
+         */
         open fun isError(): Boolean {
             return false
         }
 
+        /**
+         * Returns the error reason.
+         *
+         * If this message is not an error, this will throw an exception
+         * so be sure to check [Message.isError] first.
+         */
         open fun getError(): String {
             throw Exception("Not an error")
         }
 
-        companion object {
+        internal companion object {
             fun build(status: String, response: JSONObject): Message {
                 return Message.Data(status, response)
             }
@@ -131,6 +168,12 @@ class Channel internal constructor(
     }
 
 
+    /*
+     * Class representing the push state of a message
+     *
+     * This class is not created directly but it is returned by the
+     * [Channel.push] method.
+     */
     class Push(
         private val channel: Channel,
         private val event: String,
@@ -168,6 +211,16 @@ class Channel internal constructor(
             }
         }
 
+        /**
+         * Register a callback when a message with the following
+         * status is returned.
+         *
+         * Note: the callback might be called from another thread.
+         *
+         * @param status The status to register the callback for
+         * @param callback A callback called with the response
+         * @return Self for method chaining
+         */
         fun receive(status: String, callback: (JSONObject) -> Unit): Push {
             synchronized(channel.socket) {
                 if (hasReceived(status)) {
@@ -365,6 +418,14 @@ class Channel internal constructor(
             joinRef())
     }
 
+    /**
+     * Join the channel.
+     *
+     * @param timeout Timeout in milliseconds,
+     *  socket timeout will be used by default.
+     * @return A push that can be used to receive the messages returned
+     *  by the server on the join.
+     */
     fun join(timeout: Int = this.timeout): Push {
         if (joinedOnce) {
             throw Exception("tried to join multiple times. "+
@@ -387,6 +448,14 @@ class Channel internal constructor(
         }
     }
 
+    /**
+     * Register a close callback
+     *
+     * Note: the callback might be called on another thread
+     *
+     * @param callback A callback called when the channel is closed
+     * @return A ref that can be used with [Channel.off]
+     */
     fun onClose(callback: () -> Unit): Ref {
         return onEvent(Event.CLOSE.event) { _, _, _ ->
             synchronized(socket) {
@@ -395,6 +464,14 @@ class Channel internal constructor(
         }
     }
 
+    /**
+     * Register an error callback
+     *
+     * Note: the callback might be called on another thread
+     *
+     * @param callback A callback called when the channel has an error
+     * @return A ref that can be used with [Channel.off]
+     */
     fun onError(callback: (String) -> Unit): Ref {
         return onEvent(Event.ERROR.event) { msg, _, _ ->
             synchronized(socket) {
@@ -418,6 +495,16 @@ class Channel internal constructor(
         }
     }
 
+    /**
+     * Register a callback on arbitrary event
+     *
+     * Note: the callback might be called on another thread
+     *
+     * @param event The event to register the callback for
+     * @param callback A callback called when the channel receive a
+     *  message for the given event
+     * @return A ref that can be used with [Channel.off]
+     */
     fun on(event: String, callback: (Message) -> Unit): Ref {
         return onEvent(event) { msg, _, _ ->
             synchronized(socket) {
@@ -428,6 +515,14 @@ class Channel internal constructor(
         }
     }
 
+    /**
+     * Unregister a callback
+     *
+     * @param event The event name to unregister the callback for.
+     *  This must match what was passed to [Channel.on].
+     * @param ref The ref returned by [Channel.on], can be ommited
+     *  to unregister all callbacks for a particular event.
+     */
     fun off(event: String, ref: Ref? = null) {
         synchronized(socket) {
             bindings = bindings.filterNot { (event_, ref_, _) ->
@@ -440,6 +535,14 @@ class Channel internal constructor(
         return socket.isConnected() && isJoined()
     }
 
+    /**
+     * Push a message to the channel.
+     *
+     * @param event Event name
+     * @param payload Arbitrary payload
+     * @param timeout Timeout, default to socket timeout
+     * @return A push that can be used for chaining
+     */
     fun push(
         event: String,
         payload: JSONObject = JSONObject(),
@@ -461,6 +564,13 @@ class Channel internal constructor(
         }
     }
 
+    /**
+     * Leave a channel
+     *
+     * @param timeout [TODO:description]
+     * @param timeout Timeout, default to socket timeout
+     * @return A push that can be used for chaining
+     */
     fun leave(timeout: Int = this.timeout): Push {
         synchronized(socket) {
             rejoinTimer.reset()

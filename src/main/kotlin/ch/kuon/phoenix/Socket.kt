@@ -18,10 +18,15 @@ internal typealias ErrorCallback = (String) -> Unit
 internal typealias MessageCallback = (Socket.Message) -> Unit
 
 
-
-
 /**
  * Socket main constructor.
+ *
+ * This class is a thin layer above websockets. This layer provides
+ * compatibility with Phoenix Sockets. It handle heartbeat, serialization and
+ * provides a simple event based API.
+ *
+ * When using Phoenix, you will usually not push messages directly to sockets
+ * but use [Channels][Channel] instead.
  *
  * The url can use either the `ws://` or `wss://` scheme.
  *
@@ -705,6 +710,14 @@ class Socket(
 }
 
 
+/**
+ * Default serializer
+ *
+ * Phoenix protocol uses json encoded array of the following form:
+ *
+ * `[join_ref:int, ref:int, topic:string, event:string, payload:object]`
+ *
+ */
 internal object Serializer {
     fun encode(msg: Socket.Message, callback: (String) -> Unit) {
         val payload = arrayOf(

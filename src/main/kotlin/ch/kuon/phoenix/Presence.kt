@@ -3,29 +3,59 @@ package ch.kuon.phoenix
 import org.json.JSONObject
 import org.json.JSONArray
 
+/**
+ * Listen for presence changes
+ *
+ * @property channel A channel
+ * @property opts Options
+ */
 class Presence(val channel: Channel, val opts: Options = Options()) {
 
+    /**
+     * Presence options
+     *
+     * Default options should be used except for special requirements.
+     * They line up with phoenix default options.
+     */
     class Options(
         var eventNames: EventNames = EventNames("presence_state", "presence_diff")
     ) {
         class EventNames(val state: String, val diff: String)
     }
 
-    class Entry(val str: String): JSONObject(str) {
-        val metas = getJSONArray("metas")
+    /**
+     * A presence entry
+     *
+     * While presence are JSONObject subclasses, they should be considered
+     * immutable.
+     *
+     * Presence entries are returned by [Presence.list] and other callbacks.
+     * @property rawData The JSON string that sent by the server
+     */
+    class Entry(val rawData: String): JSONObject(rawData) {
 
-        fun setMetas(metas: JSONArray) {
+        /**
+         * The presence meta data
+         *
+         * This is an arbitrary array and the format depends on your
+         * implementation.
+         */
+        fun getMetas(): JSONArray {
+            return getJSONArray("metas")
+        }
+
+        internal fun setMetas(metas: JSONArray) {
             put("metas", metas)
         }
 
-        fun setMetas(metas: List<JSONObject>) {
+        internal fun setMetas(metas: List<JSONObject>) {
             put("metas", JSONArray(metas))
         }
 
-        fun prependMetas(newMetas: List<JSONObject>) {
+        internal fun prependMetas(newMetas: List<JSONObject>) {
             val joined = mutableListOf<JSONObject>()
             joined.addAll(newMetas)
-            metas.forEach { m ->
+            getMetas().forEach { m ->
                 if (m is JSONObject) {
                     joined.add(m)
                 }
@@ -34,7 +64,7 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
         }
     }
 
-    class Diff(
+    internal class Diff(
         val joins: HashMap<String, Entry>,
         val leaves: HashMap<String, Entry>
     )
@@ -90,6 +120,8 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
     /**
      * Set the callback for join event
      *
+     * Note: the callback might be called on another thread
+     *
      * @param callback The function to be called on join
      */
     fun onJoin(
@@ -102,6 +134,8 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
 
     /**
      * Set the callback for leave event
+     *
+     * Note: the callback might be called on another thread
      *
      * @param callback The function to be called on leave
      */
@@ -116,19 +150,29 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
     /**
      * Set the callback for sync event
      *
+     * Note: the callback might be called on another thread
+     *
      * @param callback The function to be called on sync
      */
     fun onSync(callback: () -> Unit) {
         onSync = callback
     }
 
-    fun list(by: (String, Entry) -> Entry = { _, p -> p }) : List<Entry> {
+    /**
+     * Returns the list of presence
+     *
+     * This method will return every presence returned by the server
+     */
+    fun list(by: (String, Entry) -> Entry = { _, p -> p }): List<Entry> {
         synchronized(channel.socket) {
             return Presence.list(state, by)
         }
     }
 
 
+    /**
+     * Is there any pendinng sync state
+     */
     fun inPendingSyncState(): Boolean {
         return joinRef != channel.joinRef()
     }
@@ -176,7 +220,7 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
         }
 
 
-        fun syncState(
+        internal fun syncState(
             currentState: HashMap<String, Entry>,
             newState: HashMap<String, Entry>,
             onJoin: (key: String,
@@ -199,10 +243,10 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
             map(newState) { key, newPresence ->
                 val currentPresence = state.get(key)
                 if (currentPresence != null) {
-                    val newRefs = mapRefs(newPresence.metas)
-                    val curRefs = mapRefs(currentPresence.metas)
-                    val joinedMetas = filterMetas(newPresence.metas, curRefs)
-                    val leftMetas = filterMetas(currentPresence.metas, newRefs)
+                    val newRefs = mapRefs(newPresence.getMetas())
+                    val curRefs = mapRefs(currentPresence.getMetas())
+                    val joinedMetas = filterMetas(newPresence.getMetas(), curRefs)
+                    val leftMetas = filterMetas(currentPresence.getMetas(), newRefs)
                     if (joinedMetas.size > 0) {
                         val presence = clone(newPresence)
                         presence.setMetas(joinedMetas)
@@ -222,7 +266,7 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
             return syncDiff(state, Diff(joins, leaves), onJoin, onLeave)
         }
 
-        fun syncDiff(
+        internal fun syncDiff(
             currentState: HashMap<String, Entry>,
             diff: Diff,
             onJoin: (key: String,
@@ -238,8 +282,8 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
                 val currentPresence = state.get(key)
                 state.put(key, newPresence)
                 if (currentPresence != null) {
-                    val joinedRefs = mapRefs(newPresence.metas)
-                    val curMetas = filterMetas(currentPresence.metas, joinedRefs)
+                    val joinedRefs = mapRefs(newPresence.getMetas())
+                    val curMetas = filterMetas(currentPresence.getMetas(), joinedRefs)
                     newPresence.prependMetas(curMetas)
                 }
                 onJoin(key, currentPresence, newPresence)
@@ -248,14 +292,14 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
             map(diff.leaves) { key, leftPresence ->
                 val currentPresence = state.get(key)
                 if (currentPresence != null) {
-                    val refsToRemove = mapRefs(leftPresence.metas)
+                    val refsToRemove = mapRefs(leftPresence.getMetas())
                     val newMetas = filterMetas(
-                        currentPresence.metas,
+                        currentPresence.getMetas(),
                         refsToRemove
                     )
                     currentPresence.setMetas(newMetas)
                     onLeave(key, currentPresence, leftPresence)
-                    if (currentPresence.metas.length() == 0) {
+                    if (currentPresence.getMetas().length() == 0) {
                         state.remove(key)
                     }
                 }
@@ -265,14 +309,14 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
             return state
         }
 
-        fun list(
+        internal fun list(
             presences: HashMap<String, Entry>,
             chooser: (String, Entry) -> Entry = { _, p -> p }
         ): List<Entry> {
             return map(presences, chooser)
         }
 
-        fun map(
+        internal fun map(
             entries: HashMap<String, Entry>,
             func: (String, Entry) -> Entry
         ): List<Entry> {
@@ -281,7 +325,7 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
             }
         }
 
-        fun clone(obj: HashMap<String, Entry>): HashMap<String, Entry> {
+        internal fun clone(obj: HashMap<String, Entry>): HashMap<String, Entry> {
             val copy = hashMapOf<String, Entry>()
             obj.forEach { (key, entry) ->
                 copy.put(key, Entry(entry.toString()))
@@ -289,7 +333,7 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
             return copy
         }
 
-        fun clone(entry: Entry): Entry {
+        internal fun clone(entry: Entry): Entry {
             return Entry(entry.toString())
         }
     }

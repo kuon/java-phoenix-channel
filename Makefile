@@ -14,7 +14,7 @@ doc:
 	rm -fr docs
 	./gradlew dokka
 	mkdir -p docs
-	mv build/docs/java-phoenix-channel/* docs/
+	mv build/docs/phoenix-channel/* docs/
 	mv build/docs/style.css docs/
 	for line in $$(find ./docs -name '*.html'); do sed -i 's/..\/style.css/style.css/g' $${line##* .}; done
 

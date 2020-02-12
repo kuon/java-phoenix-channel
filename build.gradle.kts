@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.BintrayPlugin
-
+import org.jetbrains.dokka.gradle.DokkaTask
 
 val projectGroup = "ch.kuon.phoenix"
 val projectVersion = "0.1.0"
@@ -89,15 +89,22 @@ bintray {
     })
 }
 
-
 tasks {
-    jar {
-        baseName = projectName
-        version = projectVersion
+    compileKotlin {
+        kotlinOptions.allWarningsAsErrors = true
     }
-    dokka {
+    jar {
+        archiveBaseName.set(projectName)
+        archiveVersion.set(projectVersion)
+    }
+    withType<DokkaTask> {
         outputFormat = "html"
         outputDirectory = "build/docs/"
+        configuration {
+            moduleName ="phoenix-channel"
+            includes = listOf("README.md")
+            samples = listOf("src/test/kotlin/ch/kuon/phoenix/LibraryTest.kt")
+        }
     }
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
