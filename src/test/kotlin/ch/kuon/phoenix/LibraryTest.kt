@@ -107,6 +107,7 @@ class LibraryTest {
         }
         waiter.await(10000)
         sd.disconnect()
+        Thread.sleep(500)
     }
 
     @Test fun testBroadcast() {
@@ -168,6 +169,7 @@ class LibraryTest {
         sd1.disconnect()
         sd2.disconnect()
         sd3.disconnect()
+        Thread.sleep(500)
     }
 
     @Test fun testPresence() {
@@ -228,6 +230,7 @@ class LibraryTest {
 
         sd2.disconnect()
         sd1.disconnect()
+        Thread.sleep(500)
     }
 
     @Test fun testTimer() {
