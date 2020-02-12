@@ -681,8 +681,14 @@ class Socket(
 
             sock.triggerError(cause.toString())
 
-            if (cause.getError() == WebSocketError.NO_MORE_FRAME
-                || websocket.getState() == WebSocketState.CLOSED
+            val err = cause.getError()
+            if (err == WebSocketError.IO_ERROR_IN_READING
+               || err == WebSocketError.IO_ERROR_IN_WRITING
+               || err == WebSocketError.NO_MORE_FRAME
+               || err == WebSocketError.INSUFFICENT_DATA
+               || err == WebSocketError.NOT_IN_CREATED_STATE
+               || err == WebSocketError.INTERRUPTED_IN_READING
+               || websocket.getState() == WebSocketState.CLOSED
             ) {
                 websocket.removeListener(this)
                 sock.triggerDisconnect(
