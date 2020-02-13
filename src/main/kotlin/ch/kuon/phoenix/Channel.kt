@@ -567,7 +567,6 @@ class Channel internal constructor(
     /**
      * Leave a channel
      *
-     * @param timeout [TODO:description]
      * @param timeout Timeout, default to socket timeout
      * @return A push that can be used for chaining
      */
