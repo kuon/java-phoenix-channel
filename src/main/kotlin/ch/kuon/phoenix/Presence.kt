@@ -1,7 +1,7 @@
 package ch.kuon.phoenix
 
-import org.json.JSONObject
-import org.json.JSONArray
+import com.github.openjson.JSONObject
+import com.github.openjson.JSONArray
 
 /**
  * Listen for presence changes
@@ -55,7 +55,10 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
         internal fun prependMetas(newMetas: List<JSONObject>) {
             val joined = mutableListOf<JSONObject>()
             joined.addAll(newMetas)
-            getMetas().forEach { m ->
+            val metas = getMetas()
+            val len = metas.length()
+            for (i in 0 until len) {
+                val m = metas.get(i)
                 if (m is JSONObject) {
                     joined.add(m)
                 }
@@ -194,19 +197,25 @@ class Presence(val channel: Channel, val opts: Options = Options()) {
         }
 
         private fun mapRefs(a: JSONArray): Set<String> {
-            return a.map { m ->
+            val results = mutableListOf<String>()
+            val len = a.length()
+            for (i in 0 until len) {
+                val m = a.get(i)
                 if (m is JSONObject) {
-                    m.getString("phx_ref")
+                    results.add(m.getString("phx_ref"))
                 } else {
                     throw Exception("Meta element is not JSON object")
                 }
-            }.toSet()
+            }
+            return results.toSet()
         }
 
         private fun filterMetas(a: JSONArray, refs: Set<String>): List<JSONObject> {
             val results = mutableListOf<JSONObject>()
 
-            a.forEach { m ->
+            val len = a.length()
+            for (i in 0 until len) {
+                val m = a.get(i)
                 if (m is JSONObject) {
                     val ref = m.getString("phx_ref")
                     if (!refs.contains(ref)) {

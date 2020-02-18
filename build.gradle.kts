@@ -46,7 +46,7 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:4.5.11")
 
     // JSON handling
-    implementation("org.json:json:20190722")
+    implementation("com.github.openjson:openjson:1.0.11")
 
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")

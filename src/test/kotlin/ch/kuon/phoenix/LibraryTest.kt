@@ -1,7 +1,8 @@
 package ch.kuon.phoenix
 
 import kotlin.test.*
-import org.json.JSONObject
+import com.github.openjson.JSONObject
+import com.github.openjson.JSONArray
 import net.jodah.concurrentunit.Waiter
 
 val url = "ws://localhost:4444/socket"
@@ -102,7 +103,16 @@ class LibraryTest {
         chan
         .push("echo", obj)
         .receive("ok") { msg ->
-            waiter.assertTrue(obj.similar(msg))
+            waiter.assertEquals(obj.getString("data1"), msg.getString("data1"))
+            waiter.assertEquals(obj.getString("data2"), msg.getString("data2"))
+            val a = obj.getJSONObject("data3")
+            val b = msg.getJSONObject("data3")
+            waiter.assertEquals(a.getString("data4"), b.getString("data4"))
+            waiter.assertEquals(a.getString("data5"), b.getString("data5"))
+            waiter.assertEquals(
+                a.getJSONArray("data6").toString(),
+                b.getJSONArray("data6").toString()
+            )
             waiter.resume()
         }
         waiter.await(10000)

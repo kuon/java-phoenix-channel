@@ -2,8 +2,8 @@ package ch.kuon.phoenix
 
 import kotlin.concurrent.schedule
 import java.util.Timer
-import org.json.JSONObject
-import org.json.JSONArray
+import com.github.openjson.JSONObject
+import com.github.openjson.JSONArray
 
 /**
  * Phoenix channel client

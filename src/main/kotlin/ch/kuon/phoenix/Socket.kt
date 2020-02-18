@@ -2,8 +2,8 @@ package ch.kuon.phoenix
 
 import java.net.URI
 import java.util.Timer
-import org.json.JSONObject
-import org.json.JSONArray
+import com.github.openjson.JSONObject
+import com.github.openjson.JSONArray
 import com.neovisionaries.ws.client.*
 import org.apache.http.client.utils.URIBuilder
 import kotlin.math.min
