@@ -317,6 +317,102 @@ presence.onSync {
 }
 ```
 
+## Promises
+
+The library itself do not include promises support, but you can easily integrate
+a library like [kovenant](http://kovenant.komponents.nl/), like so:
+
+
+```kotlin
+
+fun connect(url: String): Promise<Socket, Exception> {
+    val deferred = deferred<Socket,Exception>()
+
+    val opt = Socket.Options()
+    opt.logger = { tag, msg ->
+        Log.d(tag, msg)
+    }
+    val socket = Socket(url, opt)
+
+    val refs = mutableListOf<Int>()
+
+    val openRef = socket.onOpen {
+        deferred.resolve(socket)
+        socket.off(refs)
+    }
+    val errRef = socket.onError { err ->
+        deferred.reject(Exception(err))
+        socket.off(refs)
+    }
+    refs.add(openRef)
+    refs.add(errRef)
+
+    socket.connect()
+
+    return deferred.promise
+}
+
+fun join(
+    socket: Socket,
+    topic: String
+): Promise<Pair<Channel, JSONObject>, Exception> {
+    val deferred = deferred<Pair<Channel, JSONObject>,Exception>()
+    val channel = socket.channel(topic)
+
+    channel
+    .join()
+    .receive("ok") { msg ->
+        deferred.resolve(Pair(channel, msg))
+    }
+    .receive("error") { msg ->
+        deferred.reject(Exception(msg.toString()))
+    }
+
+    return deferred.promise
+}
+
+fun push(
+    channel: Channel?,
+    event: String,
+    payload: JSONObject = JSONObject()
+): Promise<Pair<Channel, JSONObject>, Exception> {
+
+    if (channel == null) {
+        return Promise.ofFail(Exception("Channel cannot be null"))
+    }
+
+    val deferred = deferred<Pair<Channel, JSONObject>,Exception>()
+
+    channel
+    .push(event, payload)
+    .receive("ok") { msg ->
+        deferred.resolve(Pair(channel, msg))
+    }
+    .receive("error") { msg ->
+        deferred.reject(Exception(msg.toString()))
+    }
+
+    return deferred.promise
+}
+
+// Then it can be used like so
+
+fun example() {
+    connect(getString(R.string.endpoint_url)) bind { socket ->
+        this.socket = socket
+        join(socket, "some:channel")
+    } bind { (channel, _) ->
+        this.channel = channel
+        push(channel, "somemessage")
+    } bind { (channel, msg) ->
+    } success {
+        // ok
+    } fail { err ->
+        // not ok
+    }
+}
+```
+
 
 ## License
 
