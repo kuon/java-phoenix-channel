@@ -51,7 +51,7 @@ dependencies {
     implementation("com.github.openjson:openjson:1.0.11")
 
     // Phoenix Channel Client
-    implementation("ch.kuon.phoenix:channel:0.1.3")
+    implementation("ch.kuon.phoenix:channel:0.1.4")
     // ...
 }
 ```
