@@ -51,7 +51,7 @@ dependencies {
     implementation("com.github.openjson:openjson:1.0.11")
 
     // Phoenix Channel Client
-    implementation("ch.kuon.phoenix:channel:0.1.2")
+    implementation("ch.kuon.phoenix:channel:0.1.3")
     // ...
 }
 ```
@@ -359,12 +359,23 @@ fun join(
     val deferred = deferred<Pair<Channel, JSONObject>,Exception>()
     val channel = socket.channel(topic)
 
+    val refs = mutableListOf<Int>()
+
+    val errRef = channel.onError { err ->
+        channel.off(refs)
+        deferred.reject(Exception(err))
+    }
+
+    refs.add(errRef)
+
     channel
     .join()
     .receive("ok") { msg ->
+        channel.off(refs)
         deferred.resolve(Pair(channel, msg))
     }
     .receive("error") { msg ->
+        channel.off(refs)
         deferred.reject(Exception(msg.toString()))
     }
 
@@ -383,12 +394,23 @@ fun push(
 
     val deferred = deferred<Pair<Channel, JSONObject>,Exception>()
 
+    val refs = mutableListOf<Int>()
+
+    val errRef = channel.onError { err ->
+        channel.off(refs)
+        deferred.reject(Exception(err))
+    }
+
+    refs.add(errRef)
+
     channel
     .push(event, payload)
     .receive("ok") { msg ->
+        channel.off(refs)
         deferred.resolve(Pair(channel, msg))
     }
     .receive("error") { msg ->
+        channel.off(refs)
         deferred.reject(Exception(msg.toString()))
     }
 

@@ -457,7 +457,7 @@ class Socket(
     /**
      * Unregister on<Event> listener
      *
-     * @param refs A single reference
+     * @param ref A single reference
      */
     fun off(ref: Ref) {
         off(listOf(ref))

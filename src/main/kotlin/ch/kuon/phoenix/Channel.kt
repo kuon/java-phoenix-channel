@@ -531,6 +531,30 @@ class Channel internal constructor(
         }
     }
 
+    /**
+     * Unregister multiple callbacks
+     *
+     * @param refs The refs returned by [Channel.on].
+     */
+    fun off(refs: List<Ref>) {
+        synchronized(socket) {
+            socket.log("APP", "bind a", bindings)
+            bindings = bindings.filterNot { (_, ref_, _) ->
+                refs.contains(ref_)
+            }
+            socket.log("APP", "bind b", bindings)
+        }
+    }
+
+    /**
+     * Unregister a single callback
+     *
+     * @param ref A single reference
+     */
+    fun off(ref: Ref) {
+        off(listOf(ref))
+    }
+
     internal fun canPush(): Boolean {
         return socket.isConnected() && isJoined()
     }
