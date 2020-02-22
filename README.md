@@ -3,7 +3,7 @@
 ![Build CI](https://github.com/kuon/java-phoenix-channel/workflows/CI/badge.svg)
 
 A simple client for
- [Phoenix channels](https://hexdocs.pm/phoenix/Phoenix.Channel.html).
+[Phoenix channels](https://hexdocs.pm/phoenix/Phoenix.Channel.html).
 
 Features:
 
