@@ -6,7 +6,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 val projectGroup = "ch.kuon.phoenix"
 // Update elixir project (mock_servver:mix.exs) version too to keep them in sync
 // Also update version in README.md
-val projectVersion = "0.1.4"
+val projectVersion = "0.1.5"
 val projectName = "channel"
 
 plugins {
@@ -88,6 +88,9 @@ bintray {
         setLicenses("MIT", "Apache-2.0")
         desc = description
         publicDownloadNumbers = true
+        version(delegateClosureOf<BintrayExtension.VersionConfig> {
+            name = projectVersion
+        })
     })
 }
 

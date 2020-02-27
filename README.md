@@ -1,6 +1,8 @@
-# Phoenix Channel Java Client written in Kotlin
+![Build CI](https://img.shields.io/github/workflow/status/kuon/java-phoenix-channel/CI)
+![Version](https://img.shields.io/bintray/v/kuon/java/phoenix-channel)
+![License Apache 2.0/MIT](https://img.shields.io/badge/license-Apache%202.0/MIT-0b398e)
 
-![Build CI](https://github.com/kuon/java-phoenix-channel/workflows/CI/badge.svg)
+# Phoenix Channel Java Client written in Kotlin
 
 A simple client for
 [Phoenix channels](https://hexdocs.pm/phoenix/Phoenix.Channel.html).
@@ -51,7 +53,7 @@ dependencies {
     implementation("com.github.openjson:openjson:1.0.11")
 
     // Phoenix Channel Client
-    implementation("ch.kuon.phoenix:channel:0.1.4")
+    implementation("ch.kuon.phoenix:channel:0.1.5")
     // ...
 }
 ```
