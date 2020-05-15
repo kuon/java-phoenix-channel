@@ -46,14 +46,11 @@ dependencies {
     // Web Socket Client
     implementation("com.neovisionaries:nv-websocket-client:2.9")
 
-    // Http utils to manipulate URL properly
-    implementation("org.apache.httpcomponents:httpclient:4.5.11")
-
     // JSON handling
     implementation("com.github.openjson:openjson:1.0.11")
 
     // Phoenix Channel Client
-    implementation("ch.kuon.phoenix:channel:0.1.5")
+    implementation("ch.kuon.phoenix:channel:0.1.6")
     // ...
 }
 ```

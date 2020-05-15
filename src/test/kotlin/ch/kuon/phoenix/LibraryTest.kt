@@ -19,6 +19,24 @@ class LibraryTest {
         )
     }
 
+    @Test fun testURLWithParams() {
+        val opts = Socket.Options()
+        opts.params= hashMapOf(
+            "foo" to "bar",
+            "éèàé" to "ｕｎｉｃｏｄｅ",
+            "spaces" to "    ",
+            "empty" to ""
+        )
+
+        val sd = Socket(url, opts)
+
+        assertEquals(
+            "ws://localhost:4444/socket/websocket?vsn=2.0.0&spaces=%20%20%20%20&éèàé=ｕｎｉｃｏｄｅ&foo=bar&empty=",
+            sd.endPointURL().toString(),
+            "URL do not match"
+        )
+    }
+
     @Test fun testConnect() {
         val waiter = Waiter()
 

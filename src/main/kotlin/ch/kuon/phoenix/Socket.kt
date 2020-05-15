@@ -5,7 +5,6 @@ import java.util.Timer
 import com.github.openjson.JSONObject
 import com.github.openjson.JSONArray
 import com.neovisionaries.ws.client.*
-import org.apache.http.client.utils.URIBuilder
 import kotlin.math.min
 import kotlin.concurrent.schedule
 
@@ -193,19 +192,38 @@ class Socket(
      * @return URI The full endpoint URL.
      */
     fun endPointURL(): URI {
-        val uri = URIBuilder(url)
 
-        uri.addParameter("vsn", "2.0.0")
+        val append = { buf: StringBuilder, k: String, v: String ->
+            if (buf.isNotEmpty()) {
+                buf.append('&')
+            }
 
-        opts.params?.forEach { (name, value) ->
-            uri.addParameter(name, value.toString())
+            buf.append(k + "=" + v)
         }
 
-        val segments = uri.getPathSegments()
-        segments.add("websocket")
-        uri.setPathSegments(segments)
+        val uri = URI(url)
 
-        return uri.build()
+        val params = StringBuilder(uri.query.orEmpty())
+        append(params, "vsn", "2.0.0")
+
+        opts.params?.forEach { (name, value) ->
+            append(params, name, value.toString())
+        }
+
+        val path = StringBuilder(uri.path.orEmpty())
+
+        if (path.substring(path.length - 1) != "/") {
+            path.append("/")
+        }
+        path.append("websocket")
+
+        return URI(
+            uri.scheme,
+            uri.authority,
+            path.toString(),
+            params.toString(),
+            uri.fragment
+        )
     }
 
     /**

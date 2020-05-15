@@ -6,7 +6,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 val projectGroup = "ch.kuon.phoenix"
 // Update elixir project (mock_servver:mix.exs) version too to keep them in sync
 // Also update version in README.md
-val projectVersion = "0.1.5"
+val projectVersion = "0.1.6"
 val projectName = "channel"
 
 plugins {
@@ -41,9 +41,6 @@ dependencies {
 
     // Web Socket Client
     implementation("com.neovisionaries:nv-websocket-client:2.9")
-
-    // Http utils to manipulate URL properly
-    implementation("org.apache.httpcomponents:httpclient:4.5.11")
 
     // JSON handling
     implementation("com.github.openjson:openjson:1.0.11")
@@ -106,7 +103,7 @@ tasks {
         outputFormat = "html"
         outputDirectory = "build/docs/"
         configuration {
-            moduleName ="phoenix-channel"
+            moduleName = "phoenix-channel"
             includes = listOf("README.md")
             samples = listOf("src/test/kotlin/ch/kuon/phoenix/LibraryTest.kt")
         }
