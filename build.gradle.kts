@@ -43,7 +43,7 @@ dependencies {
     implementation("com.neovisionaries:nv-websocket-client:2.9")
 
     // Http utils to manipulate URL properly
-    implementation("org.apache.httpcomponents:httpclient:4.5.11")
+    implementation("cz.msebera.android:httpclient:4.5.8")
 
     // JSON handling
     implementation("com.github.openjson:openjson:1.0.11")

@@ -5,7 +5,8 @@ import java.util.Timer
 import com.github.openjson.JSONObject
 import com.github.openjson.JSONArray
 import com.neovisionaries.ws.client.*
-import org.apache.http.client.utils.URIBuilder
+import cz.msebera.android.httpclient.client.utils.URIBuilder
+
 import kotlin.math.min
 import kotlin.concurrent.schedule
 
