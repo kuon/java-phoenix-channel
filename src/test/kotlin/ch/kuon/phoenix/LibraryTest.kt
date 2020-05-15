@@ -21,7 +21,7 @@ class LibraryTest {
 
     @Test fun testURLWithParams() {
         val opts = Socket.Options()
-        opts.params= hashMapOf(
+        opts.params = hashMapOf(
             "foo" to "bar",
             "éèàé" to "ｕｎｉｃｏｄｅ",
             "spaces" to "    ",
