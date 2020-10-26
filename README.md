@@ -9,28 +9,6 @@ https://github.com/kuon/WhyILeftGithub/blob/main/README.md
 
 ----
 
-
-# THIS REPOSITORY HAS MOVED
-
-New URL: https://git.goyman.com/kuon/java-phoenix-channel
-
-Why I moved everything out of GitHub:
-
-https://github.com/kuon/WhyILeftGithub/blob/main/README.md
-
-----
-
-
-# THIS REPOSITORY HAS MOVED
-
-New URL: https://git.goyman.com/kuon/java-phoenix-channel
-
-Why I moved everything out of GitHub:
-
-https://github.com/kuon/WhyILeftGithub/blob/main/README.md
-
-----
-
 ![Build CI](https://img.shields.io/github/workflow/status/kuon/java-phoenix-channel/CI)
 ![Version](https://img.shields.io/bintray/v/kuon/java/phoenix-channel)
 ![License Apache 2.0/MIT](https://img.shields.io/badge/license-Apache%202.0/MIT-0b398e)
