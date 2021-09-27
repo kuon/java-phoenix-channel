@@ -138,6 +138,46 @@ class LibraryTest {
         Thread.sleep(500)
     }
 
+    @Test fun testResponseError() {
+        val waiter = Waiter()
+
+        val sd = Socket(url)
+        sd.connect()
+
+        val chan = sd.channel(
+            "mock:lobby",
+            JSONObject(hashMapOf("auth" to "secret"))
+        )
+
+        val obj = JSONObject(hashMapOf("bogus" to "bogus-data"))
+
+        chan
+        .join()
+        .receive("ok") { _ ->
+            waiter.resume()
+        }
+        .receive("error") { _ ->
+            waiter.fail("Channel should not fail join")
+        }
+        waiter.await(10000)
+
+        chan
+        .push("echo_error", obj)
+        .receive("ok") { msg ->
+            waiter.fail("Channel should not get OK")
+        }
+        .receive("error") { msg ->
+            waiter.assertEquals("error", msg.getString("status"))
+            waiter.resume()
+        }
+        .receive("timeout") { status ->
+            waiter.fail("Channel should not timeout")
+        }
+        waiter.await(2000)
+
+        sd.disconnect()
+    }
+
     @Test fun testBroadcast() {
         val waiter = Waiter()
 

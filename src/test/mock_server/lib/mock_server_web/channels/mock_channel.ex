@@ -22,6 +22,10 @@ defmodule MockServerWeb.MockChannel do
     {:reply, {:ok, payload}, socket}
   end
 
+  def handle_in("echo_error", _payload, socket) do
+    {:reply, {:error, "bogus data"}, socket}
+  end
+
   def handle_in("trigger", payload, socket) do
     broadcast(socket, "broadcast", payload)
     {:noreply, socket}

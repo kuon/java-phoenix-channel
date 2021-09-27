@@ -85,12 +85,17 @@ class Channel internal constructor(
                 if (payload.length() == 0) {
                     return Message.None()
                 }
-                if (payload.isNull("status") || payload.isNull("response")) {
+                if (payload.isNull("status")) {
                     return Message.Data("ok", payload)
-                } else {
+                } else if (payload.optJSONObject("response") != null) {
                     return Message.Data(
                         payload.getString("status"),
                         payload.getJSONObject("response")
+                    )
+                } else {
+                    return Message.Data(
+                        payload.getString("status"),
+                        payload
                     )
                 }
             }
