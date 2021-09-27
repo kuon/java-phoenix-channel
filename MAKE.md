@@ -7,7 +7,6 @@
 ## Build
 
 - `build`      gradle build
-- `publish`    publish package to bintray
 - `doc`        publish documentation
 
 ## Test

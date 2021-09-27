@@ -26,7 +26,6 @@ test:
 clean:
 	rm -fr build .gradle
 
-
 .PHONY: publish
 publish:
-	gradle bintrayUpload
+	./gradlew publishMavenJavaPublicationToMavenLocal

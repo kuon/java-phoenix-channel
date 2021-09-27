@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import com.jfrog.bintray.gradle.BintrayExtension
-import com.jfrog.bintray.gradle.BintrayPlugin
 import org.jetbrains.dokka.gradle.DokkaTask
 
 val projectGroup = "ch.kuon.phoenix"
@@ -19,11 +17,10 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
 
+    signing
+
     // Create maven artefacts
     `maven-publish`
-
-    // Bintray for publication
-    id("com.jfrog.bintray") version "1.8.4"
 }
 
 repositories {
@@ -58,7 +55,7 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("mavenJava") {
             from(components["java"])
             groupId = projectGroup
             artifactId = projectName
@@ -67,29 +64,11 @@ publishing {
     }
 }
 
-
-bintray {
-    user = System.getenv("BINTRAY_USERNAME")
-    key = System.getenv("BINTRAY_API_KEY")
-    publish = true
-    setPublications("maven")
-    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
-        repo = "java"
-        name = "phoenix-channel"
-        userOrg = "kuon"
-        websiteUrl = "https://github.com/kuon/java-phoenix-channel"
-        vcsUrl = "https://github.com/kuon/java-phoenix-channel.git"
-        githubRepo = "kuon/java-phoenix-channel"
-        description = "Phoenix Channel Java Client written in Kotlin"
-        setLabels("kotlin")
-        setLicenses("MIT", "Apache-2.0")
-        desc = description
-        publicDownloadNumbers = true
-        version(delegateClosureOf<BintrayExtension.VersionConfig> {
-            name = projectVersion
-        })
-    })
+signing {
+    useGpgCmd()
+    sign(publishing.publications["mavenJava"])
 }
+
 
 tasks {
     compileKotlin {

@@ -33,7 +33,7 @@ Add the repository:
 
 repositories {
     maven {
-        setUrl("https://dl.bintray.com/kuon/java/")
+        setUrl("https://maven.goyman.com/")
     }
 }
 ```
