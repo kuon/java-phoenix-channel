@@ -10,11 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup elixir
-      uses: actions/setup-elixir@v1
+      uses: erlef/setup-beam@v1
       with:
         elixir-version: 1.12.2
         otp-version: 24
-    - name: Instaell libssl
-      run: apt-get install libssl1.0.0
     - name: Run tests
       run: make test
