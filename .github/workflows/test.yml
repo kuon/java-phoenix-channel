@@ -14,5 +14,7 @@ jobs:
       with:
         elixir-version: 1.12.2
         otp-version: 24
+    - name: Instaell libssl
+      run: apt-get install libssl1.0.0
     - name: Run tests
       run: make test
