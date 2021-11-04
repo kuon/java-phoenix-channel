@@ -681,7 +681,6 @@ class Socket(
             var code: Int
             var reason: String
 
-
             if (closedByServer) {
                 code = serverCloseFrame.getCloseCode()
                 reason = "closed by server"
@@ -692,6 +691,43 @@ class Socket(
 
             websocket.removeListener(this)
             sock.triggerDisconnect(code, reason)
+        }
+
+        override fun onStateChanged(
+            websocket: WebSocket,
+            newState: WebSocketState
+        ) {
+            if (newState == WebSocketState.CLOSED) {
+                println(websocket.getState())
+                sock.log("RAW_SOCKET", "State: CLOSED")
+
+
+                val code: Int
+                var reason: String
+
+                if (sock.closeWasClean) {
+                    code = WebSocketCloseCode.NORMAL
+                    reason = "normal close"
+                } else {
+                    code = WebSocketCloseCode.ABNORMAL
+                    reason = "unexpected close"
+                }
+
+                websocket.removeListener(this)
+                sock.triggerDisconnect(code, reason)
+            }
+        }
+
+        override fun onThreadCreated(
+            websocket: WebSocket,
+            threadType: ThreadType,
+            newThread: Thread
+        ) {
+            newThread.setUncaughtExceptionHandler {
+                thread: Thread, throwable: Throwable ->
+                sock.log("THREAD_ERROR", "Exception in: ${thread.name}")
+                throwable.printStackTrace()
+            }
         }
 
         override fun onError(websocket: WebSocket, cause: WebSocketException) {
@@ -714,6 +750,15 @@ class Socket(
                     cause.toString()
                 )
             }
+        }
+
+        override fun handleCallbackError(
+            websocket: WebSocket,
+            cause: Throwable
+        ) {
+            sock.log("RAW_SOCKET", "Unexpected callback error")
+
+            cause.printStackTrace()
         }
 
         override fun onUnexpectedError(
