@@ -1,5 +1,7 @@
 ![Build CI](https://img.shields.io/github/workflow/status/kuon/java-phoenix-channel/CI)
-![Version](https://img.shields.io/bintray/v/kuon/java/phoenix-channel)
+![Version](
+https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fmaven.goyman.com%2Fch%2Fkuon%2Fphoenix%2Fchannel%2Fmaven-metadata.xml
+)
 ![License Apache 2.0/MIT](https://img.shields.io/badge/license-Apache%202.0/MIT-0b398e)
 
 # Phoenix Channel Java Client written in Kotlin
