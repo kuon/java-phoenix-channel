@@ -4,7 +4,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 val projectGroup = "ch.kuon.phoenix"
 // Update elixir project (mock_servver:mix.exs) version too to keep them in sync
 // Also update version in README.md
-val projectVersion = "0.1.7"
+val projectVersion = "0.1.8"
 val projectName = "channel"
 
 plugins {
