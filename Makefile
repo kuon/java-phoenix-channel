@@ -28,4 +28,4 @@ clean:
 
 .PHONY: publish
 publish:
-	./gradlew publishMavenJavaPublicationToMavenRepository
+	./gradlew -Psign publishMavenJavaPublicationToMavenRepository

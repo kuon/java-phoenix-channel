@@ -4,7 +4,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 val projectGroup = "ch.kuon.phoenix"
 // Update elixir project (mock_servver:mix.exs) version too to keep them in sync
 // Also update version in README.md
-val projectVersion = "0.1.8"
+val projectVersion = "0.1.9"
 val projectName = "channel"
 
 plugins {
@@ -74,6 +74,10 @@ signing {
     sign(publishing.publications["mavenJava"])
 }
 
+
+tasks.withType<Sign>().configureEach {
+    onlyIf { project.hasProperty("sign") as Boolean }
+}
 
 tasks {
     compileKotlin {
